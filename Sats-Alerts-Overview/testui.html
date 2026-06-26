@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOC • satellite3633 • Overview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    
+    .card {
+      @apply bg-slate-900/80 border border-slate-700/60 rounded-lg;
+    }
+    
+    .expandable-item {
+      transition: all 0.2s ease;
+    }
+    
+    .timeline-item {
+      transition: all 0.2s ease;
+    }
+    
+    .timeline-item:hover {
+      background-color: #1e2937;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-200 text-sm">
+
+  <!-- ==================== TOP NAVBAR ==================== -->
+  <header class="bg-slate-900 border-b border-slate-800">
+    <div class="flex items-center justify-between px-4 h-11">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1 text-xs font-medium">
+          <button class="px-2 py-1 hover:bg-slate-800 rounded flex items-center gap-1">PROCESS <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <button class="px-2 py-1 hover:bg-slate-800 rounded flex items-center gap-1">STATUS <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <button class="px-2 py-1 hover:bg-slate-800 rounded flex items-center gap-1">CONFIG <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+        </div>
+        
+        <div class="relative">
+          <input type="text" placeholder="Search Assets" class="bg-slate-800 border border-slate-700 rounded-md pl-8 pr-3 py-1.5 text-xs w-48 focus:outline-none focus:border-blue-500" />
+          <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2 text-slate-400 text-xs"></i>
+        </div>
+        
+        <button class="bg-red-600 hover:bg-red-500 text-white text-xs font-medium px-3 py-1.5 rounded">Report Outage</button>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <span class="bg-blue-600 text-white px-2 py-0.5 rounded font-medium">STARLINK</span>
+        <span class="text-slate-400">2026-06-26 21:35 UTC</span>
+        <span class="font-medium">ANGELIQUE REFAHIYAT</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== SECONDARY TABS ==================== -->
+  <div class="bg-slate-900/90 border-b border-slate-800 px-4">
+    <div class="flex items-center justify-between h-10">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 text-sm font-medium">
+          <span>satellite3633</span>
+          <i class="fa-solid fa-lock text-slate-400 text-xs"></i>
+          <i class="fa-solid fa-skull text-slate-400 text-xs"></i>
+        </div>
+        
+        <div class="flex items-center gap-1 ml-4">
+          <button class="px-4 py-1.5 text-xs font-medium border-b-2 border-blue-500 text-white">Overview</button>
+          <button class="px-4 py-1.5 text-xs text-slate-400 hover:text-white">GNC</button>
+          <button class="px-4 py-1.5 text-xs text-slate-400 hover:text-white">Payload</button>
+          <button class="px-4 py-1.5 text-xs text-slate-400 hover:text-white">Power</button>
+          <button class="px-4 py-1.5 text-xs text-slate-400 hover:text-white">Incidents</button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button class="flex items-center gap-1 px-2 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded">Links <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+        <button class="flex items-center gap-1 px-2 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded">50% <i class="fa-solid fa-table-columns text-[10px]"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN CONTENT (50 / 50) ==================== -->
+  <div class="flex h-[calc(100vh-88px)]">
+
+    <!-- ========== LEFT 50% ========== -->
+    <div class="w-1/2 flex flex-col border-r border-slate-800 overflow-hidden">
+      
+      <!-- Alerts Table -->
+      <div class="card m-3 mb-0 flex flex-col" style="height: 220px;">
+        <div class="flex items-center justify-between px-3 py-2 border-b border-slate-700/60">
+          <h3 class="font-medium text-sm">Alerts (Last 24 Hours)</h3>
+          <button class="text-slate-400 hover:text-white"><i class="fa-solid fa-up-right-from-square text-xs"></i></button>
+        </div>
+        
+        <div class="overflow-auto flex-1">
+          <table class="w-full text-xs">
+            <thead class="bg-slate-800/50 sticky top-0">
+              <tr class="text-slate-400">
+                <th class="text-left px-3 py-2 font-medium">Node</th>
+                <th class="text-left px-3 py-2 font-medium">Subsystem</th>
+                <th class="text-left px-3 py-2 font-medium">Alert</th>
+                <th class="text-left px-3 py-2 font-medium">Start Time</th>
+                <th class="text-left px-3 py-2 font-medium">Latest Time ↓</th>
+                <th class="text-left px-3 py-2 font-medium">Function</th>
+                <th class="text-left px-3 py-2 font-medium">Active</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800">
+              <tr class="hover:bg-slate-800/40"><td class="px-3 py-2 text-slate-500" colspan="7">No active alerts in the last 24 hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bottom section of Left: 25% | 75% -->
+      <div class="flex flex-1 overflow-hidden p-3 gap-3">
+        
+        <!-- LEFT 25% -->
+        <div class="w-1/4 flex flex-col gap-3 overflow-y-auto">
+          <div class="card p-3">
+            <h3 class="font-medium mb-3 text-sm">Overview</h3>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between"><span class="text-slate-400">Vehicle revision</span><span>v1p5p1</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Last contact</span><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>2026-06-18 19:57 UTC</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">SMA altitude (km)</span><span>197</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Payload priority</span><span>0</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Enabled</span><span class="flex items-center gap-1 text-red-400"><span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>false</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">User beams enabled</span><span class="text-emerald-400">true</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Payload enabled</span><span class="flex items-center gap-1 text-red-400"><span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>false</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Limit Availability to Unreliable</span><span>false</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">JSPOC ephemeris export enabled</span><span>false</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Launch Group</span><span>group4_11</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Launch Time</span><span>2022-02-25 12:00 UTC</span></div>
+            </div>
+          </div>
+
+          <div class="card p-3">
+            <h3 class="font-medium mb-2 text-sm">Tags</h3>
+            <div class="text-xs text-slate-300 leading-relaxed space-y-1">
+              <div>7 5 min power aware heuristic (725), all satellites.automated (16K),</div>
+              <div>coverage critical sats 20230109 (1.4K),</div>
+              <div>dead phase of flight sats.automated (1.6K),</div>
+              <div>dead satellites.automated (1.7K),</div>
+              <div>deorbit authorized permanent.aut</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT 75% -->
+        <div class="w-3/4 grid grid-cols-2 gap-3 content-start overflow-y-auto">
+          <div class="card p-3">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-medium text-sm">Permanent Failures</h3>
+              <button class="text-slate-400 hover:text-white"><i class="fa-solid fa-up-right-from-square text-xs"></i></button>
+            </div>
+            <div class="bg-slate-950 rounded p-2 text-xs font-mono text-slate-300 space-y-0.5 max-h-32 overflow-y-auto">
+              <div>deorbit_authorized</div>
+              <div>disable_attitude_aware_pro</div>
+              <div>edr_satnet1_failed</div>
+              <div>force_orbit_transfer_onst</div>
+              <div>limit_max_burn_duration_t</div>
+              <div>lswitch1_failed</div>
+              <div>prop1_degraded_p_tank_sen</div>
+              <div>sada1_failed</div>
+            </div>
+          </div>
+
+          <div class="card p-3">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-medium text-sm">Failure Mode Details</h3>
+            </div>
+            <div class="bg-slate-950 rounded h-32 flex items-center justify-center text-slate-500 text-xs">No data</div>
+          </div>
+
+          <div class="card p-3">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-medium text-sm">Special Operational Concerns</h3>
+            </div>
+            <div class="bg-slate-950 rounded h-24 flex items-center justify-center text-slate-500 text-xs">No data</div>
+            <div class="mt-2 text-[10px] text-slate-500">Last Updated: 2026-02-02 18:57 UTC<br>By: Bella Wynocker</div>
+          </div>
+
+          <div class="card p-3">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-medium text-sm">Suppressed Alerts</h3>
+              <button class="text-slate-400 hover:text-white"><i class="fa-solid fa-up-right-from-square text-xs"></i></button>
+            </div>
+            <div class="bg-slate-950 rounded h-24 flex items-center justify-center text-slate-500 text-xs">None Found</div>
+          </div>
+
+          <div class="card p-3 col-span-2">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-medium text-sm">Software Version</h3>
+              <div class="flex items-center gap-2 text-slate-400">
+                <button class="hover:text-white"><i class="fa-solid fa-plus text-xs"></i></button>
+                <button class="hover:text-white"><i class="fa-solid fa-clock-rotate-left text-xs"></i></button>
+                <button class="hover:text-white"><i class="fa-solid fa-up-right-from-square text-xs"></i></button>
+              </div>
+            </div>
+            
+            <table class="w-full text-xs">
+              <thead>
+                <tr class="text-slate-400 border-b border-slate-700">
+                  <th class="text-left py-1.5 font-medium w-24">Type</th>
+                  <th class="text-left py-1.5 font-medium">Value</th>
+                  <th class="text-left py-1.5 font-medium w-32">Since</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800">
+                <tr>
+                  <td class="py-1.5 flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-blue-400 text-[10px]"></i> Override</td>
+                  <td class="py-1.5 text-slate-400">None</td>
+                  <td class="py-1.5"></td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-blue-400 text-[10px]"></i> Assigned</td>
+                  <td class="py-1.5 font-mono text-[11px]">20260610.91496.12-change-47902-lclark4-artifact.21</td>
+                  <td class="py-1.5 text-slate-400">2026-06-18 18:46 UTC</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-blue-400 text-[10px]"></i> Running</td>
+                  <td class="py-1.5 font-mono">20260324.84081</td>
+                  <td class="py-1.5 text-slate-400">2026-03-26 21:36 UTC</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== RIGHT 50% (Incident Timeline) ========== -->
+    <div class="w-1/2 flex flex-col overflow-hidden">
+      
+      <!-- Incident Header -->
+      <div class="px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <h2 class="text-lg font-semibold">INC-33995</h2>
+          <button class="flex items-center gap-1 px-2 py-1 text-xs bg-blue-600 hover:bg-blue-500 rounded">Links <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+        </div>
+        <button class="flex items-center gap-1 px-3 py-1.5 text-xs bg-blue-600 hover:bg-blue-500 rounded font-medium">Incident <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+      </div>
+
+      <!-- Metadata Row -->
+      <div class="px-4 py-2 border-b border-slate-800 grid grid-cols-7 gap-2 text-[11px]">
+        <div><div class="text-slate-500 mb-0.5 flex items-center gap-1">AUTOMATION <i class="fa-solid fa-circle-info text-[9px]"></i></div><div class="text-blue-400">Fleet Management</div></div>
+        <div><div class="text-slate-500 mb-0.5 flex items-center gap-1">STATE <i class="fa-solid fa-circle-info text-[9px]"></i></div><div><span class="bg-emerald-600/20 text-emerald-400 px-1.5 py-0.5 rounded text-[10px]">Closed</span></div></div>
+        <div><div class="text-slate-500 mb-0.5 flex items-center gap-1">SNOOZED UNTIL <i class="fa-solid fa-circle-info text-[9px]"></i></div><div>-</div></div>
+        <div><div class="text-slate-500 mb-0.5 flex items-center gap-1">PRIORITY <i class="fa-solid fa-circle-info text-[9px]"></i></div><div><span class="bg-red-600/20 text-red-400 px-1.5 py-0.5 rounded text-[10px]">High</span></div></div>
+        <div><div class="text-slate-500 mb-0.5 flex items-center gap-1">TEAM <i class="fa-solid fa-circle-info text-[9px]"></i></div><div>Vehicle GNC</div></div>
+        <div><div class="text-slate-500 mb-0.5 flex items-center gap-1">OWNER <i class="fa-solid fa-circle-info text-[9px]"></i></div><div>-</div></div>
+        <div><div class="text-slate-500 mb-0.5 flex items-center gap-1">CATEGORY <i class="fa-solid fa-circle-info text-[9px]"></i></div><div>Stuck in Retrograde</div></div>
+      </div>
+
+      <!-- Sub Tabs -->
+      <div class="px-4 py-2 border-b border-slate-800 flex items-center gap-1 overflow-x-auto">
+        <button class="px-2.5 py-1 text-xs bg-slate-800 rounded flex items-center gap-1"><i class="fa-solid fa-list text-[10px]"></i> Evaluations</button>
+        <button class="px-2.5 py-1 text-xs text-slate-400 hover:bg-slate-800 rounded">Comments</button>
+        <button class="px-2.5 py-1 text-xs text-slate-400 hover:bg-slate-800 rounded">Actions</button>
+        <button class="px-2.5 py-1 text-xs text-slate-400 hover:bg-slate-800 rounded">Alerts</button>
+        <button class="px-2.5 py-1 text-xs text-slate-400 hover:bg-slate-800 rounded">Notifications</button>
+        <button class="px-2.5 py-1 text-xs text-slate-400 hover:bg-slate-800 rounded">Procedures</button>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="px-4 py-2 border-b border-slate-800 flex items-center gap-2">
+        <button class="w-7 h-7 flex items-center justify-center bg-slate-800 hover:bg-slate-700 rounded"><i class="fa-solid fa-plus text-xs"></i></button>
+        <button class="px-3 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded">Evaluate</button>
+        <button class="px-3 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded">Other Action</button>
+        <button class="px-3 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded">Procedure</button>
+      </div>
+
+      <!-- Expandable Timeline List - FILLED WITH CONTENT -->
+      <div class="flex-1 overflow-y-auto p-3 space-y-2" id="timeline-list">
+        
+        <!-- Item 1 -->
+        <div class="card timeline-item expandable-item">
+          <div class="flex items-start gap-3 p-3 cursor-pointer" onclick="toggleExpand(this)">
+            <div class="mt-0.5 w-6 h-6 rounded-full bg-blue-600/20 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-file-lines text-blue-400 text-xs"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-slate-400">2026-06-24 19:08 UTC</span>
+                  <span class="font-medium">Evaluation</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-slate-400">David Peterson</span>
+                  <i class="fa-solid fa-ellipsis text-slate-500"></i>
+                </div>
+              </div>
+              <div class="mt-2 text-xs space-y-1">
+                <div><span class="text-slate-400">STATE</span> New → Closed</div>
+                <div class="text-orange-400">Comment: RIP</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xs mt-1 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="card timeline-item expandable-item">
+          <div class="flex items-start gap-3 p-3 cursor-pointer" onclick="toggleExpand(this)">
+            <div class="mt-0.5 w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-gear text-slate-300 text-xs"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-slate-400">2026-06-20 18:48 UTC</span>
+                  <span class="font-medium">Automation</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-slate-400">NOC Incident Worker Atl</span>
+                  <i class="fa-solid fa-ellipsis text-slate-500"></i>
+                </div>
+              </div>
+              <div class="mt-2 text-xs">
+                <div class="text-orange-400 mb-1">Comment:</div>
+                <div class="text-slate-300 leading-relaxed">
+                  Automation: Force closing the following alerts at 2026-06-20T18:48:00.006593Z since satellite marked launched=True and enabled=False:
+                  <ul class="list-disc ml-4 mt-1 text-slate-400">
+                    <li>dfd84294-d852-c332-6fec-890b149ced3a</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xs mt-1 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="card timeline-item expandable-item">
+          <div class="flex items-start gap-3 p-3 cursor-pointer" onclick="toggleExpand(this)">
+            <div class="mt-0.5 w-6 h-6 rounded-full bg-orange-600/20 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-triangle-exclamation text-orange-400 text-xs"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-slate-400">2026-06-18 19:57 UTC</span>
+                  <span class="font-medium text-orange-300">calculon</span>
+                  <span class="text-slate-400">No remaining transitions</span>
+                  <span class="bg-slate-700 text-slate-300 px-1.5 py-0.5 rounded text-[10px]">Inactive</span>
+                </div>
+                <i class="fa-solid fa-chevron-down text-slate-500 text-xs"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="card timeline-item expandable-item">
+          <div class="flex items-start gap-3 p-3 cursor-pointer" onclick="toggleExpand(this)">
+            <div class="mt-0.5 w-6 h-6 rounded-full bg-orange-600/20 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-triangle-exclamation text-orange-400 text-xs"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-slate-400">2026-06-18 19:57 UTC</span>
+                  <span class="font-medium text-orange-300">calculon</span>
+                  <span class="text-slate-400">No remaining transitions</span>
+                  <span class="bg-slate-700 text-slate-300 px-1.5 py-0.5 rounded text-[10px]">Inactive</span>
+                </div>
+                <i class="fa-solid fa-chevron-down text-slate-500 text-xs"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 - Detailed Automation -->
+        <div class="card timeline-item expandable-item">
+          <div class="flex items-start gap-3 p-3 cursor-pointer" onclick="toggleExpand(this)">
+            <div class="mt-0.5 w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-gear text-slate-300 text-xs"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-slate-400">2026-06-18 19:57 UTC</span>
+                  <span class="font-medium">Automation</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-slate-400">NOC Incident Worker Sea</span>
+                  <i class="fa-solid fa-ellipsis text-slate-500"></i>
+                </div>
+              </div>
+              <div class="mt-2 text-xs space-y-2">
+                <div class="grid grid-cols-2 gap-4">
+                  <div><div class="text-slate-500 text-[10px] mb-0.5">CATEGORY</div><div>Vehicle Safehold → Stuck in Retrograde</div></div>
+                  <div><div class="text-slate-500 text-[10px] mb-0.5">PRIORITY</div><div>Medium → High</div></div>
+                </div>
+                <div>
+                  <div class="text-orange-400 mb-1">Comment:</div>
+                  <div class="space-y-1">
+                    <div><span class="text-blue-400 font-medium">Automation Name:</span> <a href="#" class="text-blue-400 hover:underline">Fleet Management</a></div>
+                    <div class="text-slate-300">
+                      <span class="font-medium">Alerts:</span>
+                      <ul class="list-disc ml-4 mt-0.5 text-slate-400">
+                        <li>satfc1 long_duration_safehold</li>
+                        <li>calculon No remaining transitions</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xs mt-1 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Item 6 - Comment -->
+        <div class="card timeline-item expandable-item">
+          <div class="flex items-start gap-3 p-3 cursor-pointer" onclick="toggleExpand(this)">
+            <div class="mt-0.5 w-6 h-6 rounded-full bg-emerald-600/20 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-comment text-emerald-400 text-xs"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-slate-400">2026-06-17 14:22 UTC</span>
+                  <span class="font-medium">Comment</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-slate-400">Angelique Refahiyat</span>
+                  <i class="fa-solid fa-ellipsis text-slate-500"></i>
+                </div>
+              </div>
+              <div class="mt-2 text-xs">
+                <div class="text-emerald-400">Comment:</div>
+                <div class="text-slate-300">Satellite attitude recovered after reboot. Monitoring for recurrence.</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xs mt-1 transition-transform"></i>
+          </div>
+        </div>
+
+        <!-- Item 7 - Action -->
+        <div class="card timeline-item expandable-item">
+          <div class="flex items-start gap-3 p-3 cursor-pointer" onclick="toggleExpand(this)">
+            <div class="mt-0.5 w-6 h-6 rounded-full bg-purple-600/20 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-play text-purple-400 text-xs"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-slate-400">2026-06-17 11:45 UTC</span>
+                  <span class="font-medium">Action</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-slate-400">System</span>
+                  <i class="fa-solid fa-ellipsis text-slate-500"></i>
+                </div>
+              </div>
+              <div class="mt-2 text-xs">
+                <div class="text-purple-400">Action taken:</div>
+                <div class="text-slate-300">Executed safehold recovery procedure (v2.3)</div>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xs mt-1 transition-transform"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleExpand(element) {
+      const card = element.closest('.expandable-item');
+      const chevron = element.querySelector('.fa-chevron-down');
+      
+      if (chevron) {
+        chevron.classList.toggle('rotate-180');
+      }
+      
+      card.classList.toggle('ring-1');
+      card.classList.toggle('ring-blue-500/30');
+    }
+  </script>
+</body>
+</html>
+
