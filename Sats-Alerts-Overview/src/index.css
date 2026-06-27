@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+body {
+	margin: 0;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #334155;
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #475569;
+}
+
+.card {
+	@apply rounded-lg border border-slate-700/60 bg-slate-900/80;
+}
+
+.expandable-item,
+.timeline-item {
+	transition: all 0.2s ease;
+}
+
+.timeline-item:hover {
+	background-color: #1e2937;
+}
